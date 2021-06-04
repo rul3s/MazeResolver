@@ -1,4 +1,5 @@
 ﻿using MazeBackend.Model;
+using MazeFrontend.Comm;
 using MazeFrontend.Domain;
 using MazeFrontend.Helpers;
 using System;
@@ -15,7 +16,7 @@ namespace MazeFrontend
 {
     public partial class MainForm : Form
     {
-        Maze maze;
+        Maze maze, resolvedMaze;
         MazeOperations mazeOperations;
         MazeGUIOperations mazeGUIGenerator;
 
@@ -36,6 +37,17 @@ namespace MazeFrontend
             mazeGUIGenerator = new MazeGUIOperations(maze, this, 20, 0);
             mazeGUIGenerator.FillGUIWithMaze();
 
+        }
+
+        private void btnResolveMaze_Click(object sender, EventArgs e)
+        {
+            SendMazeForResolvingOnServer();
+        }
+
+        private async void SendMazeForResolvingOnServer()
+        {
+            Task<Maze> mazeTask = HttpOperations.PostMazeToServiceAndResolve(maze, "http://localhost:58898/mazeresolver");
+            resolvedMaze = await mazeTask;
         }
     }
 }

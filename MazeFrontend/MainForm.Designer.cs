@@ -40,6 +40,7 @@ namespace MazeFrontend
             this.btnResolveMaze.TabIndex = 0;
             this.btnResolveMaze.Text = "Resolve!";
             this.btnResolveMaze.UseVisualStyleBackColor = true;
+            this.btnResolveMaze.Click += new System.EventHandler(this.btnResolveMaze_Click);
             // 
             // MainForm
             // 
