@@ -29,20 +29,33 @@ namespace MazeFrontend
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnResolveMaze = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // Form1
+            // btnResolveMaze
+            // 
+            this.btnResolveMaze.Location = new System.Drawing.Point(403, 392);
+            this.btnResolveMaze.Name = "btnResolveMaze";
+            this.btnResolveMaze.Size = new System.Drawing.Size(258, 38);
+            this.btnResolveMaze.TabIndex = 0;
+            this.btnResolveMaze.Text = "Resolve!";
+            this.btnResolveMaze.UseVisualStyleBackColor = true;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 564);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(673, 442);
+            this.Controls.Add(this.btnResolveMaze);
+            this.Name = "MainForm";
+            this.Text = "MazeResolver";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnResolveMaze;
     }
 }
 
