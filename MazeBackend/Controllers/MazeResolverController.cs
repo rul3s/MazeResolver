@@ -32,11 +32,10 @@ namespace MazeBackend.Controllers
         [HttpPost]
         public string Post()
         {
-            Maze maze, resolvedMaze;
-
-            Console.WriteLine("Received something via POST\n;");
+            Maze receivedMaze, resolvedMaze;
             string body;
 
+            Console.WriteLine("Received something via POST\n;");
             using (StreamReader str = new StreamReader(Request.Body))
             {
                 body = str.ReadToEnd();
@@ -44,14 +43,14 @@ namespace MazeBackend.Controllers
 
             if(Request.ContentType != "application/json")
             {
-                Console.WriteLine("Received not a JSON content.");
-                return "Please, provide JSON content.";
+                Console.WriteLine("Received content is not JSON formatted.");
+                return "Please, provide JSON formatted content.";
             }
 
-            Console.WriteLine("Request content is advertised as JSON, now triing to deserialize it...;");
+            Console.WriteLine("Request content JSON formatted, now triing to deserialize it...;");
             try
             {
-                maze = JsonConvert.DeserializeObject<Maze>(body);
+                receivedMaze = JsonConvert.DeserializeObject<Maze>(body);
                 Console.WriteLine("Deserialized correctly into Maze Object");
             }
             catch(Exception)
@@ -60,8 +59,8 @@ namespace MazeBackend.Controllers
                 return "Error deserializing json into Maze Object\n";
             }
 
-            MazeResolver mazeResolver = new MazeResolver(maze);
-            resolvedMaze = mazeResolver.ResolveMaze();
+            MazeResolver mazeResolver = new MazeResolver();
+            resolvedMaze = mazeResolver.ResolveMaze(receivedMaze);
 
             return JsonConvert.SerializeObject(resolvedMaze);
         }

@@ -1,13 +1,8 @@
-﻿using MazeBackend.Model;
-using MazeFrontend.Model;
+﻿using MazeFrontend.Model;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MazeFrontend.Comm
@@ -15,11 +10,13 @@ namespace MazeFrontend.Comm
     class HttpOperations
     {
         static readonly HttpClient client = new HttpClient();
-        public HttpOperations()
-        {
 
-        }
-
+        /// <summary>
+        /// Send Maze object throught HTTP post to the web service.
+        /// </summary>
+        /// <param name="maze">The maze object to send to the WS</param>
+        /// <param name="url">URL where the WS is</param>
+        /// <returns></returns>
         public async static Task<Maze> PostMazeToServiceAndResolve(Maze maze, string url)
         {
             Maze resolvedMaze;

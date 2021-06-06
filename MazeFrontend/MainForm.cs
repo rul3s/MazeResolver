@@ -1,7 +1,7 @@
-﻿using MazeBackend.Model;
-using MazeFrontend.Comm;
+﻿using MazeFrontend.Comm;
 using MazeFrontend.Domain;
 using MazeFrontend.Helpers;
+using MazeFrontend.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,27 +17,20 @@ namespace MazeFrontend
     public partial class MainForm : Form
     {
         Maze maze, resolvedMaze;
-        MazeOperations mazeOperations;
-        MazeGUIOperations mazeGUIGenerator;
+        MazeGUIHelper mazeGUIGenerator;
 
         public MainForm()
         {
             InitializeComponent();
-
             LoadMazeGUI();
         }
 
         public void LoadMazeGUI()
         {
-            maze = new Maze(8,8,new int[2] { 0, 0 });
-
-            mazeOperations = new MazeOperations(maze);
-            //mazeOperations.FillMazeMapWithTestData();
-            mazeOperations.FillMazeMapWithTestData2();
-
-            mazeGUIGenerator = new MazeGUIOperations(maze, this, 40, 2);
+            //maze = MazeHelper.GetSmallTestMaze();
+            maze = MazeHelper.GetTestMaze();
+            mazeGUIGenerator = new MazeGUIHelper(maze, this, 40, 2);
             mazeGUIGenerator.FillGUIWithMaze();
-
         }
 
         private void btnResolveMaze_Click(object sender, EventArgs e)

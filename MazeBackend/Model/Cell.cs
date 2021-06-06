@@ -8,19 +8,26 @@ namespace MazeBackend.Model
 {
     public class Cell
     {
+        /// <summary>
+        /// Position X,Y where the cell is on the maze. 0,0 is represented on the lower-left side.
+        /// </summary>
         public int[] Position { get; set; }
-        ///<value>As maze will be represented as an bidimensional array of cells, 
-        ///this will represent if this cell is a path or wall.</value>
+
+        /// <summary>
+        /// To know if this cell is a valid path to go or a wall
+        /// </summary>
         public bool IsPath { get; set; }
 
-        ///<value>Minimum lenght to reach this cell from start cell</value>
-        public int MinimumPathWeight { get; set; }
+        /// <summary>
+        /// Minimum number of steps to arribe to that cell
+        /// </summary>
+        public int MinPathSteps { get; set; }
 
         public Cell(bool isPath, int[] position)
         {
             IsPath = isPath;
             Position = position;
-            MinimumPathWeight = -1;
+            MinPathSteps = -1;
         }
     }
 }

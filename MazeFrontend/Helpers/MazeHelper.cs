@@ -1,25 +1,18 @@
-﻿using MazeBackend.Model;
-using MazeFrontend.Model;
+﻿using MazeFrontend.Model;
 using System;
 
 namespace MazeFrontend.Domain
 {
-    public class MazeOperations
+    public class MazeHelper
     {
-        private Maze maze;
-
-        public MazeOperations(Maze maze)
+        /// <summary>
+        /// Fill maze with a 4x4 test maze
+        /// </summary>
+        /// <param name="maze"></param>
+        public static Maze GetSmallTestMaze()
         {
-            this.maze = maze;
-        }
+            Maze maze = new Maze(4, 4, new int[2] { 0, 0 });
 
-        public void FillMap()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FillMazeMapWithTestData()
-        {
             maze.Map[0, 0] = new Cell(true, new int[] { 0, 0 });
             maze.Map[1, 0] = new Cell(true, new int[] { 1, 0 });
             maze.Map[2, 0] = new Cell(true, new int[] { 2, 0 });
@@ -39,10 +32,14 @@ namespace MazeFrontend.Domain
             maze.Map[1, 3] = new Cell(true, new int[] { 1, 3 });
             maze.Map[2, 3] = new Cell(true, new int[] { 2, 3 });
             maze.Map[3, 3] = new Cell(true, new int[] { 3, 3 });
+
+            return maze;
         }
 
-        public void FillMazeMapWithTestData2()
+        public static Maze GetTestMaze()
         {
+            Maze maze = new Maze(8, 8, new int[2] { 0, 0 });
+
             maze.Map[0, 0] = new Cell(true, new int[] { 0, 0 });
             maze.Map[1, 0] = new Cell(true, new int[] { 1, 0 });
             maze.Map[2, 0] = new Cell(false, new int[] { 2, 0 });
@@ -114,8 +111,8 @@ namespace MazeFrontend.Domain
             maze.Map[5, 7] = new Cell(true, new int[] { 5, 7 });
             maze.Map[6, 7] = new Cell(true, new int[] { 6, 7 });
             maze.Map[7, 7] = new Cell(true, new int[] { 7, 7 });
+
+            return maze;
         }
-
-
     }
 }

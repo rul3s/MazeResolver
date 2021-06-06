@@ -50,10 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comm\HttpOperations.cs" />
-    <Compile Include="Helpers\CustomExceptions.cs" />
-    <Compile Include="Helpers\Enums.cs" />
-    <Compile Include="Helpers\MazeOperations.cs" />
-    <Compile Include="Helpers\MazeGUIOperations.cs" />
+    <Compile Include="Helpers\MazeHelper.cs" />
+    <Compile Include="Helpers\MazeGUIHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

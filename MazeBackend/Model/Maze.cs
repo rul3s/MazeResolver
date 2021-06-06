@@ -1,17 +1,23 @@
-﻿using MazeBackend.Helpers;
-using MazeBackend.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static MazeBackend.Helpers.CustomExceptions;
 
 namespace MazeBackend.Model
 {
     public class Maze
     {
+        /// <summary>
+        /// Width in cells
+        /// </summary>
         public int SizeX { get; set; }
+
+        /// <summary>
+        /// Height in cells
+        /// </summary>
         public int SizeY { get; set; }
+
+        /// <summary>
+        /// Where the startpoint is, lowerleft is 0,0.
+        /// </summary>
         public int[] StartPoint { get; set; }
 
         ///<value>Map is bidimensional array of cells. Position 0,0 will be lower left side of a rectangular maze</value>
@@ -25,6 +31,11 @@ namespace MazeBackend.Model
             Map = new Cell[sizeX,sizeY];
         }
 
+        /// <summary>
+        /// From a given cell it will return all the posible LINEAR movements (not diagonal) in a List of cells.
+        /// </summary>
+        /// <param name="actualCell">Actual cell to search from</param>
+        /// <returns></returns>
         public List<Cell> GetAllPosibleMovements(Cell actualCell)
         {
             List<Cell> posibleMovements = new List<Cell>();
@@ -61,6 +72,14 @@ namespace MazeBackend.Model
             return posibleMovements;
         }
 
+        /// <summary>
+        /// Try to do a move specified on X,Y from the given cell. If it's possible it will return
+        /// the next cell, if not, will throw a MoveNotAllowedException
+        /// </summary>
+        /// <param name="actualCell">The actual cell to move from</param>
+        /// <param name="xMovement">X diference to move from actual cell</param>
+        /// <param name="yMovement">Y diference to move from actual cell</param>
+        /// <returns>The next cell if move is posible, MoveNotAllowedException if there is no cell to move to.</returns>
         private Cell DoMove(Cell actualCell, int xMovement, int yMovement)
         {
             int[] nextPosition = new int[2];
@@ -72,6 +91,13 @@ namespace MazeBackend.Model
                 return Map[nextPosition[0], nextPosition[1]];
             else
                 throw new MoveNotAllowedException();
+        }
+
+        public class MoveNotAllowedException : Exception
+        {
+            public MoveNotAllowedException()
+            {
+            }
         }
     }
 }
