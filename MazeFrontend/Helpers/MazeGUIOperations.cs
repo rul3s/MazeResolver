@@ -40,11 +40,24 @@ namespace MazeFrontend.Helpers
                     btn.Size = new Size(CellSize, CellSize);
                     btn.Enabled = false;
                     ButtonMap[col, row] = btn;
+                    if (!maze.Map[col, row].IsPath)
+                        btn.BackColor = System.Drawing.Color.Black;
                     window.Controls.Add(btn);
                     x += CellSize + CellDist;
                 }
                 x = 0;
                 y += CellSize + CellDist;
+            }
+        }
+
+        public void UpdateGUIWithMazeData(Maze resolvedMaze)
+        {
+            for (int row = 0; row < resolvedMaze.SizeY; row++)
+            {
+                for (int col = 0; col < resolvedMaze.SizeX; col++)
+                {
+                    ButtonMap[col, row].Text = resolvedMaze.Map[col, row].MinimumPathWeight.ToString();
+                }
             }
         }
     }

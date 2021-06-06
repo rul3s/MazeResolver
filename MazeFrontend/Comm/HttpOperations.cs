@@ -24,7 +24,6 @@ namespace MazeFrontend.Comm
         {
             Maze resolvedMaze;
 
-            string result = "";
             WebRequest webRequest = WebRequest.Create(url);
             webRequest.Method = "post";
             webRequest.ContentType = "application/json";

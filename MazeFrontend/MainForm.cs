@@ -34,7 +34,7 @@ namespace MazeFrontend
             mazeOperations = new MazeOperations(maze);
             mazeOperations.FillMazeMapWithTestData();
 
-            mazeGUIGenerator = new MazeGUIOperations(maze, this, 20, 0);
+            mazeGUIGenerator = new MazeGUIOperations(maze, this, 40, 2);
             mazeGUIGenerator.FillGUIWithMaze();
 
         }
@@ -48,6 +48,8 @@ namespace MazeFrontend
         {
             Task<Maze> mazeTask = HttpOperations.PostMazeToServiceAndResolve(maze, "http://localhost:58898/mazeresolver");
             resolvedMaze = await mazeTask;
+
+            mazeGUIGenerator.UpdateGUIWithMazeData(resolvedMaze);
         }
     }
 }

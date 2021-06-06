@@ -1,8 +1,10 @@
-﻿using MazeFrontend.Model;
+﻿using MazeBackend.Helpers;
+using MazeBackend.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static MazeBackend.Helpers.CustomExceptions;
 
 namespace MazeBackend.Model
 {
@@ -21,6 +23,58 @@ namespace MazeBackend.Model
             SizeY = sizeY;
             StartPoint = startPoint;
             Map = new Cell[sizeX,sizeY];
+        }
+
+        public List<Cell> GetAllPosibleMovements(Cell actualCell)
+        {
+            List<Cell> posibleMovements = new List<Cell>();
+
+            //move up y+1
+            try
+            {
+                posibleMovements.Add(DoMove(actualCell, 0, 1));
+            }
+            catch (Exception) { }
+
+            //move right x+1
+            try
+            {
+                posibleMovements.Add(DoMove(actualCell, 1, 0));
+            }
+            catch (Exception) { }
+
+            //move down y-1
+            try
+            {
+                posibleMovements.Add(DoMove(actualCell, 0, -1));
+            }
+            catch (Exception) { }
+
+            //move left x-1
+            try
+            {
+                posibleMovements.Add(DoMove(actualCell, -1, 0));
+            }
+            catch (Exception) { }
+
+
+            return posibleMovements;
+        }
+
+        private Cell DoMove(Cell actualCell, int xMovement, int yMovement)
+        {
+            int[] actualPosition, nextPosition;
+
+            actualPosition = actualCell.Position;
+            nextPosition = actualPosition;
+
+            nextPosition[0] = nextPosition[0] + xMovement;
+            nextPosition[1] = nextPosition[1] + yMovement;
+
+            if (Map[nextPosition[0], nextPosition[1]].IsPath)
+                return Map[nextPosition[0], nextPosition[1]];
+            else
+                throw new MoveNotAllowedException();
         }
     }
 }

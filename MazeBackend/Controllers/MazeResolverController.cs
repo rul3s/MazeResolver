@@ -54,7 +54,7 @@ namespace MazeBackend.Controllers
                 maze = JsonConvert.DeserializeObject<Maze>(body);
                 Console.WriteLine("Deserialized correctly into Maze Object");
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 Console.WriteLine("Couldn't deserialize it correctly into Maze Object");
                 return "Error deserializing json into Maze Object\n";
