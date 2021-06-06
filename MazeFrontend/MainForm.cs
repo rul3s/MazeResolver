@@ -29,10 +29,11 @@ namespace MazeFrontend
 
         public void LoadMazeGUI()
         {
-            maze = new Maze(4,4,new int[2] { 0, 0 });
+            maze = new Maze(8,8,new int[2] { 0, 0 });
 
             mazeOperations = new MazeOperations(maze);
-            mazeOperations.FillMazeMapWithTestData();
+            //mazeOperations.FillMazeMapWithTestData();
+            mazeOperations.FillMazeMapWithTestData2();
 
             mazeGUIGenerator = new MazeGUIOperations(maze, this, 40, 2);
             mazeGUIGenerator.FillGUIWithMaze();
@@ -40,6 +41,11 @@ namespace MazeFrontend
         }
 
         private void btnResolveMaze_Click(object sender, EventArgs e)
+        {
+            SendMazeForResolvingOnServer();
+        }
+
+        private void resolveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SendMazeForResolvingOnServer();
         }

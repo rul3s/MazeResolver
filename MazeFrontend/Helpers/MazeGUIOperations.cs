@@ -28,10 +28,19 @@ namespace MazeFrontend.Helpers
 
         public void FillGUIWithMaze()
         {
-            int x = 0, y = 0;
+            int x, y, startX, startY, size;
             Button btn;
 
-            for(int row=0; row < maze.SizeY; row++)
+            startX = 0;
+            startY = (CellSize * maze.SizeY) + ((maze.SizeY - 1) * CellDist) - CellSize;
+            y = startY + 50;
+            x = startX;
+
+            size = startY + 10;
+
+            window.Size = new Size(size*2, size*2);
+
+            for (int row=0; row < maze.SizeY; row++)
             {
                 for (int col=0; col < maze.SizeX; col++)
                 {
@@ -46,7 +55,7 @@ namespace MazeFrontend.Helpers
                     x += CellSize + CellDist;
                 }
                 x = 0;
-                y += CellSize + CellDist;
+                y -= CellSize + CellDist;
             }
         }
 

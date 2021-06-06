@@ -57,6 +57,7 @@ namespace MazeBackend.Domain
             bool continueSearch;
             Cell actualCell = ((ThreadParams)obj).cell;
             int actualWeight = ((ThreadParams)obj).actualPathWeight;
+            List<Cell> nextMoves;
 
             do
             {
@@ -64,7 +65,7 @@ namespace MazeBackend.Domain
                 actualCell.MinimumPathWeight = actualWeight;
                 actualWeight++;
 
-                List<Cell> nextMoves = maze.GetAllPosibleMovements(actualCell);
+                nextMoves = maze.GetAllPosibleMovements(actualCell);
                 nextMoves = GetCellsWithBetterPathing(nextMoves, actualWeight);
 
                 if (nextMoves.Count == 0)

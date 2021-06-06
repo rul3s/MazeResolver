@@ -63,13 +63,10 @@ namespace MazeBackend.Model
 
         private Cell DoMove(Cell actualCell, int xMovement, int yMovement)
         {
-            int[] actualPosition, nextPosition;
+            int[] nextPosition = new int[2];
 
-            actualPosition = actualCell.Position;
-            nextPosition = actualPosition;
-
-            nextPosition[0] = nextPosition[0] + xMovement;
-            nextPosition[1] = nextPosition[1] + yMovement;
+            nextPosition[0] = actualCell.Position[0] + xMovement;
+            nextPosition[1] = actualCell.Position[1] + yMovement;
 
             if (Map[nextPosition[0], nextPosition[1]].IsPath)
                 return Map[nextPosition[0], nextPosition[1]];
